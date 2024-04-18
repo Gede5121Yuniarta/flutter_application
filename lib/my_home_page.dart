@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/aboutus_screen.dart';
+import 'package:flutter_application_1/screens/books_screen.dart';
 import 'package:flutter_application_1/screens/latihanapi_screen.dart';
 import 'package:flutter_application_1/screens/home_screen.dart';
-import 'package:flutter_application_1/screens/latihancrudsqlite_screen.dart';
+import 'package:flutter_application_1/screens/petani_screen.dart';
+// import 'package:flutter_application_1/screens/latihancrudsqlite_screen.dart';
 import 'package:flutter_application_1/screens/settings_screen.dart';
 import 'package:flutter_application_1/screens/notification_screen.dart';
 import 'package:flutter_application_1/screens/listproducts_screen.dart';
@@ -26,9 +28,11 @@ class _MyHomePageState extends State<MyHomePage> {
     const NotificationScreen(),
     const ProfileScreen(),
     const LatihanAPIScreen(),
-    const LatihanCRUDSQlite(),
+    // const LatihanCRUDSQlite(),
+    const BooksScreen(),
     const SettingsScreen(),
-    const AboutUs()
+    const AboutUs(),
+    const PetaniScreen()
   ];
 
   final List<String> _appBarTitles = const [
@@ -180,15 +184,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            // ListTile(
+            //   title: const Text('Latihan CRUD SQlite'),
+            //   selected: _selectedIndex == 5,
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) =>
+            //               const LatihanCRUDSQlite()), // <-- Tambah baris ini
+            //     );
+            //   },
+            // ),
             ListTile(
-              title: const Text('Latihan CRUD SQlite'),
+              title: const Text('Books'),
               selected: _selectedIndex == 5,
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          const LatihanCRUDSQlite()), // <-- Tambah baris ini
+                          const BooksScreen()), // <-- Tambah baris ini
                 );
               },
             ),
@@ -213,6 +229,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) =>
                           const AboutUs()), // <-- Tambah baris ini
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Petani'),
+              selected: _selectedIndex == 8,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const PetaniScreen()), // <-- Tambah baris ini
                 );
               },
             ),
