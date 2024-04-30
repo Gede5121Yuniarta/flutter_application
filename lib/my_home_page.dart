@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/petani.dart';
 import 'package:flutter_application_1/screens/aboutus_screen.dart';
 import 'package:flutter_application_1/screens/books_screen.dart';
 import 'package:flutter_application_1/screens/latihanapi_screen.dart';
@@ -9,6 +10,8 @@ import 'package:flutter_application_1/screens/settings_screen.dart';
 import 'package:flutter_application_1/screens/notification_screen.dart';
 import 'package:flutter_application_1/screens/listproducts_screen.dart';
 import 'package:flutter_application_1/screens/profile_screen.dart';
+
+import 'package:flutter_application_1/services/apiStatic.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -22,17 +25,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
+  late Future<List<Petani>> futurePetani;
+
+  final ApiService apiStatic = ApiService();
+
+  @override
+  void initState() {
+    super.initState();
+    futurePetani = apiStatic.fetchPetani();
+  }
+
   final List<Widget> _screens = [
     const HomeScreen(),
     const ListProductsScreen(),
     const NotificationScreen(),
-    const ProfileScreen(),
-    const LatihanAPIScreen(),
-    // const LatihanCRUDSQlite(),
-    const BooksScreen(),
-    const SettingsScreen(),
-    const AboutUs(),
-    const PetaniScreen()
+    const ProfileScreen()
   ];
 
   final List<String> _appBarTitles = const [
@@ -134,6 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Home'),
+              trailing: const Icon(Icons.home),
               selected: _selectedIndex == 0,
               onTap: () {
                 // Update the state of the app
@@ -174,6 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // ),
             ListTile(
               title: const Text('Latihan API'),
+              trailing: const Icon(Icons.list),
               selected: _selectedIndex == 4,
               onTap: () {
                 Navigator.push(
@@ -198,6 +207,7 @@ class _MyHomePageState extends State<MyHomePage> {
             // ),
             ListTile(
               title: const Text('Books'),
+              trailing: const Icon(Icons.book),
               selected: _selectedIndex == 5,
               onTap: () {
                 Navigator.push(
@@ -210,6 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Settings'),
+              trailing: const Icon(Icons.settings),
               selected: _selectedIndex == 6,
               onTap: () {
                 Navigator.push(
@@ -222,6 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('About Us'),
+              trailing: const Icon(Icons.info),
               selected: _selectedIndex == 7,
               onTap: () {
                 Navigator.push(
@@ -234,16 +246,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Petani'),
-              selected: _selectedIndex == 8,
+              trailing: const Icon(Icons.api),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          const PetaniScreen()), // <-- Tambah baris ini
+                      builder: (context) => PetaniScreen(
+                            futurePetani: futurePetani,
+                          )),
                 );
               },
             ),
+            Divider(),
           ],
         ),
       ),
