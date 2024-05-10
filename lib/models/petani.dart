@@ -18,7 +18,7 @@ class Petani {
     this.telp,
     this.foto,
     this.status,
-    this.namaKelompok,
+    this.namaKelompok, required String fotoPath,
   });
 
   factory Petani.fromJson(Map<String, dynamic> json) {
@@ -31,7 +31,9 @@ class Petani {
       telp: json['telp'],
       foto: json['foto'],
       status: json['status'],
-      namaKelompok: json['nama_kelompok'],
+      namaKelompok: json['nama_kelompok'], fotoPath: '',
     );
   }
+
+  get fotoPath => null;
 }

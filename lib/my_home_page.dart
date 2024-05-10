@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/petani.dart';
+// import 'package:flutter_application_1/models/petani.dart';
 import 'package:flutter_application_1/screens/aboutus_screen.dart';
 import 'package:flutter_application_1/screens/books_screen.dart';
 import 'package:flutter_application_1/screens/latihanapi_screen.dart';
@@ -10,8 +10,7 @@ import 'package:flutter_application_1/screens/settings_screen.dart';
 import 'package:flutter_application_1/screens/notification_screen.dart';
 import 'package:flutter_application_1/screens/listproducts_screen.dart';
 import 'package:flutter_application_1/screens/profile_screen.dart';
-
-import 'package:flutter_application_1/services/apiStatic.dart';
+// import 'package:flutter_application_1/services/apistatic.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -25,15 +24,15 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  late Future<List<Petani>> futurePetani;
+  // late Future<List<Petani>> futurePetani;
 
-  final ApiService apiStatic = ApiService();
+  // final ApiStatic apistatic = ApiStatic();
 
-  @override
-  void initState() {
-    super.initState();
-    futurePetani = apiStatic.fetchPetani();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   futurePetani = apistatic.fetchPetani();
+  // }
 
   final List<Widget> _screens = [
     const HomeScreen(),
@@ -251,13 +250,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => PetaniScreen(
-                            futurePetani: futurePetani,
-                          )),
+                      builder: (context) => PetaniScreen()),
                 );
               },
             ),
-            Divider(),
+            const Divider(),
           ],
         ),
       ),
